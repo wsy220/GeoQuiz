@@ -22,6 +22,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(QuizActivity.this,R.string.true_toast,Toast.LENGTH_SHORT).show();
+
             }
         });
         mFalseButton.setOnClickListener(new View.OnClickListener(){
