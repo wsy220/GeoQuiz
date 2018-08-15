@@ -14,6 +14,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <DigitalClock
+            android:id="@+id/digitaClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="#FF0000"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btn_as"
@@ -29,27 +36,22 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#eeeeee">
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#eeeeee">-->
 
 
+    <!--<TextView-->
+    <!--android:id="@+id/textView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="#aaccff"-->
+    <!--android:padding="12dip"-->
+    <!--android:text="@string/helloworld"-->
+    <!--tools:layout_editor_absoluteX="1dp"-->
+    <!--tools:layout_editor_absoluteY="108dp" />-->
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#aaccff"
-            android:padding="12dip"
-            android:text="@string/helloworld"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="108dp" />
-        <AnalogClock
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="true"
-            android:layout_below="@+id/textView"/>
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 </android.support.constraint.ConstraintLayout>
