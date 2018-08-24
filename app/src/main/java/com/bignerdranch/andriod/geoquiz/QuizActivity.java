@@ -1,6 +1,7 @@
 package com.bignerdranch.andriod.geoquiz;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,12 +28,16 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.question_text, false)
     };
     private static final String TAG = "QuizActivity";
+    //初始化一个KEY值
+    private static final String KEY_INDEX = "index";
 
+    //获取问题
     private void updataQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQestionTextView.setText(question);
     }
 
+    //比对问题答案
     private void checkQuestion(boolean userPressTrue) {
         boolean answerisTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
         int messageResId = 0;
@@ -43,6 +48,7 @@ public class QuizActivity extends AppCompatActivity {
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void onStart() {
@@ -59,17 +65,29 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         Log.d(TAG, "onResume called");
     }
+
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
-        Log.d(TAG,"onStop called");
+        Log.d(TAG, "onStop called");
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy called");
+    }
+    //重写onSaveInstanceState方法，将mCurrentIndex保留到Bundle中
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.d(TAG,"onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX,mCurrentIndex);
     }
 
     @Override
@@ -80,6 +98,10 @@ public class QuizActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate(Buddle) called");
 
         mQestionTextView = (TextView) findViewById(R.id.question_text_view);
+        //如果Buddle中有存在，赋给mCurrentIndex
+        if(savedInstanceState!=null){
+            mCurrentIndex=savedInstanceState.getInt(KEY_INDEX,0);
+        }
         updataQuestion();
 
         mTrueButton = (Button) findViewById(R.id.true_button);
